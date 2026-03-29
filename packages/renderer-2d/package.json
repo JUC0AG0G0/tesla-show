@@ -1,0 +1,5 @@
+{
+  "name": "@repo/renderer-2d",
+  "version": "0.1.0",
+  "main": "src/index.ts"
+}

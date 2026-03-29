@@ -1,0 +1,11 @@
+{
+  "id": "model3",
+  "name": "Tesla Model 3",
+  "dimensions": { "length": 4.7, "width": 1.85 },
+  "lights": [
+    { "id": "headlights", "type": "boolean", "position": [0.9, 0.3] },
+    { "id": "taillights", "type": "boolean", "position": [-0.9, 0.3] }
+  ],
+  "2d": { "shape": "rectangle", "width": 1.85, "length": 4.7 },
+  "3d": { "modelPath": "/models/model3.glb" }
+}

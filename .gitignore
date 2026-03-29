@@ -1,0 +1,73 @@
+# ----------------------
+# Node.js
+# ----------------------
+**/node_modules/
+**/dist/
+**/build/
+**/.next/
+**/.nuxt/
+**/.output/
+
+# Logs
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# Env
+**/.env
+**/.env.*
+!**/.env.example
+
+# OS / Editor
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# IDE
+**/.vscode/
+**/.idea/
+
+# ----------------------
+# Rust / Cargo
+# ----------------------
+**/target/
+**/Cargo.lock
+
+# ⚠️ Optionnel :
+# Si c’est une app (et pas une lib), tu peux garder Cargo.lock
+#!**/Cargo.lock
+
+# ----------------------
+# Tauri
+# ----------------------
+**/src-tauri/target/
+**/src-tauri/binaries/
+**/src-tauri/gen/
+
+# Icônes générées
+**/src-tauri/icons/*
+!**/src-tauri/icons/icon.png
+
+# Fichiers de build Tauri
+**/src-tauri/*.rs.bk
+
+# ----------------------
+# Misc
+# ----------------------
+**/*.log
+**/*.tmp
+**/*.swp
+**/*.bak
+
+# Coverage / tests
+**/coverage/
+**/.nyc_output/
+
+# Cache
+**/.cache/
+**/.turbo/
+**/.parcel-cache/
+
+# Vite
+**/vite.config.ts.timestamp-*
