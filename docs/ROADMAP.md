@@ -1,5 +1,15 @@
 # Roadmap
 
+## Now
+- Tailwind
+- eslint
+- Ci (eslint + test build)
+- Husky
+- Precommit pre push
+- Docs
+- Specs
+- Archi de tests
+
 ## MVP
 - 2D editor
 - 1 vehicle
