@@ -1,6 +1,7 @@
 {
   "name": "tesla-lightshow-studio",
   "private": true,
+  "type": "module",
   "version": "0.1.0",
   "workspaces": [
     "apps/*",
@@ -8,6 +9,15 @@
   ],
   "scripts": {
     "dev": "npm run tauri dev --workspace tauri",
-    "build": "npm run build --workspace desktop"
+    "build": "npm run build --workspace desktop",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "typescript-eslint": "^8.58.0"
   }
 }
