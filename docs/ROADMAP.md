@@ -1,8 +1,6 @@
 # Roadmap
 
 ## Now
-- Tailwind
-- eslint
 - Ci (eslint + test build)
 - Husky
 - Precommit pre push
