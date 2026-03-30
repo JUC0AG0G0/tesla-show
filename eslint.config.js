@@ -5,7 +5,6 @@ import hooksPlugin from "eslint-plugin-react-hooks";
 
 export default tseslint.config(
   {
-    // On ignore les dossiers de build, les fichiers générés et le config lui-même
     ignores: ["**/dist/**", "**/build/**", "**/target/**", "node_modules/**", "eslint.config.js"],
   },
   js.configs.recommended,
@@ -19,7 +18,7 @@ export default tseslint.config(
     },
     languageOptions: {
       parserOptions: {
-        projectService: true, // Plus stable que 'project: true' pour les monorepos
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -27,27 +26,42 @@ export default tseslint.config(
       react: { version: "detect" },
     },
     rules: {
-      // Intégration manuelle pour éviter les bugs d'import de plugins anciens
       ...reactPlugin.configs.recommended.rules,
       ...hooksPlugin.configs.recommended.rules,
 
-      // --- RÈGLES DE PROPRETÉ ---
+      "max-lines": ["error", { 
+        max: 400, 
+        skipBlankLines: true, 
+        skipComments: true 
+      }],
+
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "@typescript-eslint/no-unused-vars": ["error", { 
+        "args": "after-used", 
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+      }],
+      "no-duplicate-imports": "error",
+
+      "sort-imports": ["error", {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+      }],
+
       "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
-      "@typescript-eslint/no-floating-promises": "error",
-      "@typescript-eslint/no-misused-promises": "error",
-      
-      // --- AJUSTEMENTS REACT ---
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      
-      // --- RIGUEUR ---
+      "@typescript-eslint/no-unsafe-assignment": "error",
+      "@typescript-eslint/no-unsafe-call": "error",
+      "@typescript-eslint/no-unsafe-member-access": "error",
+      "@typescript-eslint/no-unsafe-return": "error",
+
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "eqeqeq": ["error", "always"],
       "curly": "error",
       "no-debugger": "error",
+      
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "react/self-closing-comp": "error",
     },
   }
 );
