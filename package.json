@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace desktop",
+    "dev": "npm run tauri dev --workspace tauri",
     "build": "npm run build --workspace desktop"
   }
 }
