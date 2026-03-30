@@ -1,12 +1,12 @@
 # Roadmap
 
 ## Now
-- Ci (eslint + test build)
-- Husky
-- Precommit pre push
 - Docs
 - Specs
+- Husky
+- Precommit pre push (eslint + test)
 - Archi de tests
+- Ci (test + build)
 
 ## MVP
 - 2D editor
