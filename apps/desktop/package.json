@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build"
   },
+  "type": "module",
   "dependencies": {
     "@tauri-apps/plugin-dialog": "^2.7.1",
     "@tauri-apps/plugin-opener": "^2.5.4",
