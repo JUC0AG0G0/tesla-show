@@ -2,12 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { open } from "@tauri-apps/plugin-dialog";
 import { openUrl } from "@tauri-apps/plugin-opener";
 
-type Project = {
+interface Project {
   id: string;
   name: string;
   path: string;
   updatedAt: string;
-};
+}
 
 const DOC_URL = "https://github.com/JUC0AG0G0/tesla-show";
 
@@ -32,11 +32,11 @@ export default function HomePage() {
       ]
     });
 
-    if (!file) return;
+    if (!file) {return;}
 
     console.log("Selected file:", file);
 
-    navigate(`/open?file=${encodeURIComponent(file as string)}`);
+    navigate(`/open?file=${encodeURIComponent(file)}`);
   };
 
   return (
