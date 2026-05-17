@@ -21,28 +21,40 @@ const fakeProjects: Project[] = [
 export default function HomePage() {
   const navigate = useNavigate();
 
-  const handleOpenProject = async () => {
+  const handleOpenProject = async (): Promise<void> => {
     const file = await open({
       multiple: false,
       filters: [
         {
           name: "Project",
-          extensions: ["json", "ls", "tesla"]
-        }
-      ]
+          extensions: ["json", "ls", "tesla"],
+        },
+      ],
     });
 
-    if (!file) {return;}
+    if (!file) {
+      return;
+    }
 
-    console.log("Selected file:", file);
+    console.warn("Selected file:", file);
 
     navigate(`/open?file=${encodeURIComponent(file)}`);
   };
 
+  const handleOpenDocs = (): void => {
+    void openUrl(DOC_URL);
+  };
+
+  const handleNewProject = (): void => {
+    navigate("/new");
+  };
+
+  const handleOpenExisting = (): void => {
+    void handleOpenProject();
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
-
-      {/* Top bar */}
       <div className="w-full flex items-center justify-between px-10 py-5 bg-white border-b border-gray-200">
         <div>
           <h1 className="text-lg font-semibold">
@@ -53,17 +65,16 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Quick actions */}
         <div className="flex gap-3">
           <button
-            onClick={() => openUrl(DOC_URL)}
+            onClick={handleOpenDocs}
             className="text-sm px-3 py-2 rounded-md border border-gray-200 hover:bg-gray-50 transition"
           >
             Open Docs
           </button>
 
           <button
-            onClick={() => navigate("/new")}
+            onClick={handleNewProject}
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-3 py-2 rounded-md transition"
           >
             + New project
@@ -71,9 +82,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Main */}
       <main className="flex-1 p-10">
-
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold">
@@ -84,10 +93,9 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Quick actions */}
         <div className="grid grid-cols-2 gap-4 mb-10">
           <div
-            onClick={() => navigate("/new")}
+            onClick={handleNewProject}
             className="p-5 bg-white border border-gray-200 rounded-lg hover:shadow-sm cursor-pointer transition"
           >
             <h3 className="font-medium">New Project</h3>
@@ -97,7 +105,7 @@ export default function HomePage() {
           </div>
 
           <div
-            onClick={handleOpenProject}
+            onClick={handleOpenExisting}
             className="p-5 bg-white border border-gray-200 rounded-lg hover:shadow-sm cursor-pointer transition"
           >
             <h3 className="font-medium">Open Project</h3>
