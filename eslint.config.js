@@ -3,17 +3,34 @@ import tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
 import hooksPlugin from "eslint-plugin-react-hooks";
 
-export default tseslint.config(
+export default [
   {
-    ignores: ["**/dist/**", "**/build/**", "**/target/**", "node_modules/**", "eslint.config.js"],
+    ignores: [
+      "**/dist/**",
+      "**/build/**",
+      "**/target/**",
+      "node_modules/**",
+      "eslint.config.js",
+      "**/*.config.js"
+    ],
   },
+
   js.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+
+  ...tseslint.configs.recommendedTypeChecked.map(config => ({
+    ...config,
+    files: ["**/*.{ts,tsx}"],
+  })),
+
+  ...tseslint.configs.stylisticTypeChecked.map(config => ({
+    ...config,
+    files: ["**/*.{ts,tsx}"],
+  })),
+
   {
     files: ["**/*.{ts,tsx}"],
     plugins: {
-      "react": reactPlugin,
+      react: reactPlugin,
       "react-hooks": hooksPlugin,
     },
     languageOptions: {
@@ -29,23 +46,24 @@ export default tseslint.config(
       ...reactPlugin.configs.recommended.rules,
       ...hooksPlugin.configs.recommended.rules,
 
-      "max-lines": ["error", { 
-        max: 400, 
-        skipBlankLines: true, 
-        skipComments: true 
+      "max-lines": ["error", {
+        max: 400,
+        skipBlankLines: true,
+        skipComments: true
       }],
 
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error", { 
-        "args": "after-used", 
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_",
+      "@typescript-eslint/no-unused-vars": ["error", {
+        args: "after-used",
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
       }],
+
       "no-duplicate-imports": "error",
 
       "sort-imports": ["error", {
-        "ignoreCase": true,
-        "ignoreDeclarationSort": true,
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
       }],
 
       "@typescript-eslint/no-explicit-any": "error",
@@ -55,13 +73,13 @@ export default tseslint.config(
       "@typescript-eslint/no-unsafe-return": "error",
 
       "no-console": ["warn", { allow: ["warn", "error"] }],
-      "eqeqeq": ["error", "always"],
-      "curly": "error",
+      eqeqeq: ["error", "always"],
+      curly: "error",
       "no-debugger": "error",
-      
+
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
       "react/self-closing-comp": "error",
     },
-  }
-);
+  },
+];
