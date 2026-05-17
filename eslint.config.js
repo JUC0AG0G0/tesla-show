@@ -11,7 +11,8 @@ export default [
       "**/target/**",
       "node_modules/**",
       "eslint.config.js",
-      "**/*.config.js"
+      "**/*.config.js",
+      "docs-site/**",
     ],
   },
 
