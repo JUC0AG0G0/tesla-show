@@ -53,6 +53,10 @@ export default function HomePage() {
     void handleOpenProject();
   };
 
+  const handleNavigateProject = (path: string): void => {
+    navigate(path);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
       <div className="w-full flex items-center justify-between px-10 py-5 bg-white border-b border-gray-200">
@@ -83,7 +87,6 @@ export default function HomePage() {
       </div>
 
       <main className="flex-1 p-10">
-        {/* Header */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold">
             Welcome back
@@ -115,7 +118,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Recent projects */}
         <div>
           <h3 className="text-lg font-semibold mb-4">
             Recent Projects
@@ -125,7 +127,7 @@ export default function HomePage() {
             {fakeProjects.map((project) => (
               <div
                 key={project.id}
-                onClick={() => navigate(project.path)}
+                onClick={() => handleNavigateProject(project.path)}
                 className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm cursor-pointer transition"
               >
                 <div>
