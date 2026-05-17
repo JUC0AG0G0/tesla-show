@@ -38,7 +38,7 @@ export default function HomePage() {
 
     console.warn("Selected file:", file);
 
-    navigate(`/open?file=${encodeURIComponent(file)}`);
+    void navigate(`/open?file=${encodeURIComponent(file)}`);
   };
 
   const handleOpenDocs = (): void => {
@@ -46,7 +46,7 @@ export default function HomePage() {
   };
 
   const handleNewProject = (): void => {
-    navigate("/new");
+    void navigate("/new");
   };
 
   const handleOpenExisting = (): void => {
@@ -54,7 +54,7 @@ export default function HomePage() {
   };
 
   const handleNavigateProject = (path: string): void => {
-    navigate(path);
+    void navigate(path);
   };
 
   return (

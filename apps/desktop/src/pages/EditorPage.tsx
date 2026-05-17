@@ -10,7 +10,9 @@ export default function EditorPage() {
       </h1>
 
       <p
-        onClick={() => navigate("/")}
+        onClick={() => {
+            void navigate("/");
+        }}
         className="cursor-pointer underline"
       >
         back button
