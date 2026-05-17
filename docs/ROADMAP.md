@@ -13,6 +13,7 @@
 - 1 vehicle
 - basic lights
 - export
+- Icons app
 
 ## V1
 - multi-vehicle
