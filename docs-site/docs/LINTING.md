@@ -1,4 +1,7 @@
-# 🛠 Charte de Qualité Code (TS / TSX / Rust)
+---
+sidebar_position: 4
+---
+# Charte de Qualité Code (TS / TSX / Rust)
 
 Ce projet utilise une configuration **ESLint 9+ (Flat Config)** et **Rust Clippy** pour garantir un code maintenable, performant et exempt de "code mort".
 
