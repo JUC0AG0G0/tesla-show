@@ -12,7 +12,7 @@ const config: Config = {
   },
 
   url: 'https://JUC0AG0G0.github.io',
-  baseUrl: '/tesla-show/',
+  baseUrl: process.env.BASE_URL || '/tesla-show/',
   organizationName: 'JUC0AG0G0',
   projectName: 'tesla-show',
 
@@ -56,7 +56,7 @@ const config: Config = {
           label: 'Quickstart',
         },
         {
-          href: 'https://github.com/JUC0AG0G0/tesla-show',
+          href: 'https://JUC0AG0G0.github.io/tesla-show',
           label: 'GitHub',
           position: 'right',
         },
