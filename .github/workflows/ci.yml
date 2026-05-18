@@ -8,12 +8,14 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - run: npm install --legacy-peer-deps
       - run: npm run lint
@@ -28,6 +30,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - run: npm ci
         working-directory: docs-site
@@ -39,7 +42,8 @@ jobs:
   deploy-docs:
     runs-on: ubuntu-latest
     needs: docs
-    if: github.ref == 'refs/heads/main'
+
+    if: contains(['refs/heads/main', 'refs/heads/develop'], github.ref)
 
     steps:
       - uses: actions/checkout@v4
@@ -47,13 +51,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - run: npm ci
         working-directory: docs-site
 
-      - name: Deploy
+      - name: Deploy production
+        if: github.ref == 'refs/heads/main'
         working-directory: docs-site
         env:
           GIT_USER: github-actions
           GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy
+
+      - name: Deploy develop preview
+        if: github.ref == 'refs/heads/develop'
+        working-directory: docs-site
+        env:
+          GIT_USER: github-actions
+          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
+        run: npx docusaurus deploy --branch gh-pages-dev
