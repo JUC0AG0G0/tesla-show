@@ -61,7 +61,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: '/tesla-show/dev/',
+          href: 'https://JUC0AG0G0.github.io/tesla-show/dev/',
           label: 'Preview (dev)',
           position: 'right',
         },
