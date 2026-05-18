@@ -1,13 +1,89 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - run: npm install
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm install --legacy-peer-deps
+      - run: npm run lint
+
+
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+        working-directory: docs-site
+
       - run: npm run build
-      - run: npm test
+        working-directory: docs-site
+
+
+  deploy-docs:
+    runs-on: ubuntu-latest
+    needs: docs
+
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+        working-directory: docs-site
+
+      - run: npm run build
+        working-directory: docs-site
+
+      - name: Build (main)
+        if: github.ref == 'refs/heads/main'
+        run: BASE_URL=/tesla-show/ npm run build
+        working-directory: docs-site
+
+      - name: Build (develop)
+        if: github.ref == 'refs/heads/develop'
+        run: BASE_URL=/tesla-show/dev/ npm run build
+        working-directory: docs-site
+
+      - name: Deploy production (main)
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs-site/build
+          destination_dir: .
+
+      - name: Deploy preview (develop)
+        if: github.ref == 'refs/heads/develop'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs-site/build
+          destination_dir: dev

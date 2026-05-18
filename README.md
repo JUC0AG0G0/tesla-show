@@ -2,28 +2,22 @@
 
 A modern desktop app to create Tesla-compatible light shows.
 
-## Features
+## Documentation
 
-- Multi-car support (MVP: 10 vehicles)
-- 2D & 3D preview
-- Timeline-based animation
-- Tesla-compatible export (.fseq)
+The project documentation is available online:
 
-## Stack
+- <a href="https://juc0ag0g0.github.io/tesla-show/" target="_blank" rel="noopener noreferrer">
+  Production docs
+</a>
 
-- React + Zustand
-- Tauri (Rust)
-- Three.js
+- <a href="https://juc0ag0g0.github.io/tesla-show/dev/" target="_blank" rel="noopener noreferrer">
+  Development preview
+</a>
+
+
 
 ## Getting Started
 
-```bash
-npm install
-npm run dev
-```
-
-
-In apps/tauri
 ```bash
 npm install
 npm run dev
