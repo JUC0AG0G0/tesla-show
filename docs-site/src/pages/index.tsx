@@ -22,7 +22,7 @@ export default function Home() {
 
           <div className={styles.buttons}>
             
-            <Link className={styles.buttonPrimary} to="/docs/QUICKSTART.md">
+            <Link className={styles.buttonPrimary} to="/docs/QUICKSTART">
               🚀 Démarrage rapide
             </Link>
 
@@ -30,7 +30,7 @@ export default function Home() {
               📘 Spécifications
             </Link>
 
-            <Link className={styles.buttonSecondary} to="/docs/ROADMAP.md">
+            <Link className={styles.buttonSecondary} to="/docs/ROADMAP">
               🗺️ Roadmap
             </Link>
 
