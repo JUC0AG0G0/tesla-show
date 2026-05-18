@@ -56,7 +56,7 @@ const config: Config = {
           label: 'Quickstart',
         },
         {
-          href: 'https://JUC0AG0G0.github.io/tesla-show',
+          href: 'https://github.com/JUC0AG0G0/tesla-show',
           label: 'GitHub',
           position: 'right',
         },
