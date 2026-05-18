@@ -56,18 +56,21 @@ jobs:
       - run: npm ci
         working-directory: docs-site
 
-      - name: Deploy production
-        if: github.ref == 'refs/heads/main'
+      - run: npm run build
         working-directory: docs-site
-        env:
-          GIT_USER: github-actions
-          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
 
-      - name: Deploy develop preview
+      - name: Deploy production (main)
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs-site/build
+          destination_dir: .
+
+      - name: Deploy preview (develop)
         if: github.ref == 'refs/heads/develop'
-        working-directory: docs-site
-        env:
-          GIT_USER: github-actions
-          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
-        run: npx docusaurus deploy --branch gh-pages-dev
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs-site/build
+          destination_dir: dev

@@ -7,9 +7,8 @@ const config: Config = {
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
   url: 'https://JUC0AG0G0.github.io',
@@ -19,9 +18,6 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'fr',
     locales: ['fr'],
@@ -33,8 +29,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/JUC0AG0G0/tesla-show/',
+          editUrl: 'https://github.com/JUC0AG0G0/tesla-show/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -65,8 +60,14 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: '/tesla-show/dev/',
+          label: 'Preview (dev)',
+          position: 'right',
+        },
       ],
     },
+
     footer: {
       style: 'dark',
       links: [
@@ -82,6 +83,7 @@ const config: Config = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Tesla Light Show Editor, Inc. Built with Docusaurus.`,
     },
+
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
