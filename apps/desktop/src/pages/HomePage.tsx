@@ -9,7 +9,7 @@ interface Project {
   updatedAt: string;
 }
 
-const DOC_URL = "https://github.com/JUC0AG0G0/tesla-show";
+const DOC_URL = "https://juc0ag0g0.github.io/tesla-show/";
 
 const fakeProjects: Project[] = [
   { id: "1", name: "Model S Lightshow", path: "/projects/model-s", updatedAt: "2 days ago" },
