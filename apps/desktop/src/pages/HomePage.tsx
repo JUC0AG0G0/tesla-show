@@ -37,6 +37,7 @@ export default function HomePage() {
         <RecentProjects
           projects={fakeProjects}
           onSelect={goToProject}
+          onCreateProject={newProject}
         />
       </main>
     </div>
